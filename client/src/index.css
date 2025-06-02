@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 222 84% 5%;
+  --foreground: 213 31% 91%;
+  --muted: 223 47% 11%;
+  --muted-foreground: 215 20% 65%;
+  --popover: 224 71% 4%;
+  --popover-foreground: 215 20% 65%;
+  --card: 224 71% 4%;
+  --card-foreground: 213 31% 91%;
+  --border: 216 34% 17%;
+  --input: 216 34% 17%;
+  --primary: 199 89% 48%;
+  --primary-foreground: 222 84% 5%;
+  --secondary: 223 47% 11%;
+  --secondary-foreground: 215 20% 65%;
+  --accent: 223 47% 11%;
+  --accent-foreground: 215 20% 65%;
+  --destructive: 0 63% 31%;
+  --destructive-foreground: 210 40% 98%;
+  --ring: 216 34% 17%;
+  --radius: 0.5rem;
+  
+  /* Cyber security theme colors */
+  --cyber-dark: 222 84% 5%;
+  --cyber-surface: 223 47% 11%;
+  --cyber-blue: 199 89% 48%;
+  --cyber-green: 142 71% 45%;
+  --cyber-amber: 43 96% 56%;
+  --cyber-red: 0 72% 51%;
+}
+
+.dark {
+  --background: 222 84% 5%;
+  --foreground: 213 31% 91%;
+  --muted: 223 47% 11%;
+  --muted-foreground: 215 20% 65%;
+  --popover: 224 71% 4%;
+  --popover-foreground: 215 20% 65%;
+  --card: 224 71% 4%;
+  --card-foreground: 213 31% 91%;
+  --border: 216 34% 17%;
+  --input: 216 34% 17%;
+  --primary: 199 89% 48%;
+  --primary-foreground: 222 84% 5%;
+  --secondary: 223 47% 11%;
+  --secondary-foreground: 215 20% 65%;
+  --accent: 223 47% 11%;
+  --accent-foreground: 215 20% 65%;
+  --destructive: 0 63% 31%;
+  --destructive-foreground: 210 40% 98%;
+  --ring: 216 34% 17%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background-color: hsl(var(--cyber-dark));
+    color: hsl(var(--foreground));
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold;
+  }
+
+  code {
+    font-family: 'JetBrains Mono', 'Fira Code', Monaco, monospace;
+  }
+}
+
+@layer components {
+  .cyber-card {
+    @apply bg-card border border-border rounded-xl p-6;
+    background-color: hsl(var(--cyber-surface));
+  }
+
+  .severity-critical {
+    @apply bg-red-950 border-red-600 text-red-400;
+  }
+
+  .severity-high {
+    @apply bg-yellow-950 border-yellow-600 text-yellow-400;
+  }
+
+  .severity-medium {
+    @apply bg-orange-950 border-orange-600 text-orange-400;
+  }
+
+  .severity-low {
+    @apply bg-blue-950 border-blue-600 text-blue-400;
+  }
+
+  .severity-info {
+    @apply bg-slate-700 border-slate-500 text-slate-300;
+  }
+
+  .btn-primary {
+    @apply bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center space-x-2;
+    background-color: hsl(var(--cyber-blue));
+    color: hsl(var(--cyber-dark));
+  }
+
+  .btn-danger {
+    @apply bg-destructive hover:bg-destructive/90 text-destructive-foreground font-semibold py-2 px-4 rounded-lg transition-colors;
+    background-color: hsl(var(--cyber-red));
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-colors;
+    background-color: hsl(var(--cyber-surface));
+    border-color: hsl(var(--border));
+  }
+
+  .sidebar-link {
+    @apply flex items-center space-x-3 px-3 py-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent transition-colors;
+  }
+
+  .sidebar-link-active {
+    @apply flex items-center space-x-3 px-3 py-2 rounded-lg bg-primary text-primary-foreground;
+    background-color: hsl(var(--cyber-blue));
+    color: hsl(var(--cyber-dark));
+  }
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--cyber-dark));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+/* Custom slider styles */
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: hsl(var(--cyber-blue));
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: hsl(var(--cyber-blue));
+  cursor: pointer;
+  border: none;
+}
+
+/* Pulse animation for status indicators */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
